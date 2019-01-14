@@ -1,20 +1,19 @@
-using GroboContainer.Core;
 using Microsoft.Extensions.DependencyInjection;
 
 namespace GroboContainer.Extensions.DependencyInjection
 {
     public class GroboServiceScopeFactory : IServiceScopeFactory
     {
-        public GroboServiceScopeFactory(IContainer container)
+        public GroboServiceScopeFactory(GroboServiceProvider serviceProvider)
         {
-            this.container = container;
+            this.serviceProvider = serviceProvider;
         }
 
         public IServiceScope CreateScope()
         {
-            return new GroboServiceScope(new GroboServiceProvider(container.MakeChildContainer()));
+            return new GroboServiceScope(serviceProvider.MakeChildServiceProvider());
         }
 
-        private readonly IContainer container;
+        private readonly GroboServiceProvider serviceProvider;
     }
 }

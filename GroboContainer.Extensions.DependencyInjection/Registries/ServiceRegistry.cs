@@ -34,6 +34,7 @@ namespace GroboContainer.Extensions.DependencyInjection.Registries
             return registrations.TryGetValue(serviceType, out result);
         }
 
+
         private readonly ConcurrentDictionary<Type, TValue> registrations = new ConcurrentDictionary<Type, TValue>();
     }
 }
